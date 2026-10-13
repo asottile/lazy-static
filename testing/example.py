@@ -6,3 +6,6 @@ from lazy_static import lazy
 def for_test_1() -> int:
     print('computing')
     return 5
+
+
+for_test_2 = lazy(lambda: print('computing') or 6)

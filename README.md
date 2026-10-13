@@ -30,7 +30,7 @@ import functools
 
 lazy import yaml
 
-loads = functools.partial(yaml.load, Loader=yaml.CSafeLoader)
+load = functools.partial(yaml.load, Loader=yaml.CSafeLoader)
 ```
 
 did you catch the bug?  yeah that import isn't lazy due to accessing attributes!
@@ -38,7 +38,7 @@ did you catch the bug?  yeah that import isn't lazy due to accessing attributes!
 it would be great if I could do:
 
 ```
-lazy loads = functools.partial(yaml.load, Loader=yaml.CSafeLoader)
+lazy load = functools.partial(yaml.load, Loader=yaml.CSafeLoader)
 ```
 
 but there's no such thing...[^1] unless...
@@ -111,7 +111,7 @@ Success: no issues found in 1 source file
 ```
 ___
 
-if we take the earlier example we can define our `loads` partial lazily while
+if we take the earlier example we can define our `load` partial lazily while
 preserving the `lazy` import!
 
 
@@ -122,6 +122,17 @@ from lazy_static import lazy
 lazy import yaml
 
 @lazy
-def loads():
-    return functools.partial(yaml.loads, Loader=yaml.CSafeLoader)
+def load():
+    return functools.partial(yaml.load, Loader=yaml.CSafeLoader)
+```
+
+you can also use `lazy` with a lambda if you don't want a full function:
+
+```python
+import functools
+
+from lazy_static import lazy
+lazy import yaml
+
+load = lazy(lambda: functools.partial(yaml.load, Loader=yaml.CSafeLoader))
 ```
