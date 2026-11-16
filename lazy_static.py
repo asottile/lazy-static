@@ -1,4 +1,4 @@
-from collections.abc import Callable
+lazy from collections.abc import Callable
 
 
 def lazy[T](f: Callable[[], T]) -> T:
