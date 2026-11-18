@@ -5,7 +5,7 @@ from testing import example
 
 def test_1(capsys):
     assert capsys.readouterr().out == ''
-    assert type(example.__dict__['for_test_1']) is types.LazyImportType  # type: ignore[attr-defined]  # noqa: E501
+    assert type(example.__dict__['for_test_1']) is types.LazyImportType  # noqa: E501
 
     assert example.for_test_1 == 5
 
@@ -15,7 +15,7 @@ def test_1(capsys):
 
 def test_2(capsys):
     assert capsys.readouterr().out == ''
-    assert type(example.__dict__['for_test_2']) is types.LazyImportType  # type: ignore[attr-defined]  # noqa: E501
+    assert type(example.__dict__['for_test_2']) is types.LazyImportType  # noqa: E501
 
     assert example.for_test_2 == 6
 
